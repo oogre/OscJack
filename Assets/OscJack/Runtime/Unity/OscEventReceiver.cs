@@ -41,14 +41,14 @@ namespace OscJack
 
 
 
-        [SerializeField] int intData;
-        [SerializeField] float floatData;
-        [SerializeField] string stringData;
-        [SerializeField] Vector2 vector2Data;
-        [SerializeField] Vector3 vector3Data;
-        [SerializeField] Vector4 vector4Data;
-        [SerializeField] Vector2Int vector2IntData;
-        [SerializeField] Vector3Int vector3IntData;
+        [SerializeField] public int intData;
+        [SerializeField] public float floatData;
+        [SerializeField] public string stringData;
+        [SerializeField] public Vector2 vector2Data;
+        [SerializeField] public Vector3 vector3Data;
+        [SerializeField] public Vector4 vector4Data;
+        [SerializeField] public Vector2Int vector2IntData;
+        [SerializeField] public Vector3Int vector3IntData;
 
         [SerializeField] int _udpPort = 9000;
         [SerializeField] string _oscAddress = "/unity";
