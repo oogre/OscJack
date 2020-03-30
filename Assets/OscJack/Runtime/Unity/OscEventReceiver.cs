@@ -10,6 +10,7 @@ namespace OscJack
     [AddComponentMenu("OSC/Event Receiver")]
     public sealed class OscEventReceiver : MonoBehaviour
     {
+
         #region Receiver data types
 
         public enum DataType
@@ -34,7 +35,20 @@ namespace OscJack
 
         #endregion
 
+
+
         #region Editable fields
+
+
+
+        [SerializeField] int intData;
+        [SerializeField] float floatData;
+        [SerializeField] string stringData;
+        [SerializeField] Vector2 vector2Data;
+        [SerializeField] Vector3 vector3Data;
+        [SerializeField] Vector4 vector4Data;
+        [SerializeField] Vector2Int vector2IntData;
+        [SerializeField] Vector3Int vector3IntData;
 
         [SerializeField] int _udpPort = 9000;
         [SerializeField] string _oscAddress = "/unity";
@@ -249,22 +263,27 @@ namespace OscJack
 
                 case DataType.Int:
                     lock (_intQueue)
+                        intData = data.GetElementAsInt(0);
                         _intQueue.Enqueue(data.GetElementAsInt(0));
                     break;
 
                 case DataType.Float:
                     lock (_floatQueue)
+                        floatData = data.GetElementAsFloat(0);
                         _floatQueue.Enqueue(data.GetElementAsFloat(0));
                     break;
 
                 case DataType.String:
                     lock (_stringQueue)
+                        stringData = data.GetElementAsString(0);
                         _stringQueue.Enqueue(data.GetElementAsString(0));
                     break;
 
                 case DataType.Vector2:
                     lock (_floatQueue)
                     {
+                        vector2Data.x = data.GetElementAsFloat(0);
+                        vector2Data.y = data.GetElementAsFloat(1);
                         _floatQueue.Enqueue(data.GetElementAsFloat(0));
                         _floatQueue.Enqueue(data.GetElementAsFloat(1));
                     }
@@ -273,6 +292,9 @@ namespace OscJack
                 case DataType.Vector3:
                     lock (_floatQueue)
                     {
+                        vector3Data.x = data.GetElementAsFloat(0);
+                        vector3Data.y = data.GetElementAsFloat(1);
+                        vector3Data.z = data.GetElementAsFloat(2);
                         _floatQueue.Enqueue(data.GetElementAsFloat(0));
                         _floatQueue.Enqueue(data.GetElementAsFloat(1));
                         _floatQueue.Enqueue(data.GetElementAsFloat(2));
@@ -282,6 +304,10 @@ namespace OscJack
                 case DataType.Vector4:
                     lock (_floatQueue)
                     {
+                        vector4Data.x = data.GetElementAsFloat(0);
+                        vector4Data.y = data.GetElementAsFloat(1);
+                        vector4Data.z = data.GetElementAsFloat(2);
+                        vector4Data.w = data.GetElementAsFloat(3);
                         _floatQueue.Enqueue(data.GetElementAsFloat(0));
                         _floatQueue.Enqueue(data.GetElementAsFloat(1));
                         _floatQueue.Enqueue(data.GetElementAsFloat(2));
@@ -292,6 +318,8 @@ namespace OscJack
                 case DataType.Vector2Int:
                     lock (_intQueue)
                     {
+                        vector2IntData.x = data.GetElementAsInt(0);
+                        vector2IntData.y = data.GetElementAsInt(1);
                         _intQueue.Enqueue(data.GetElementAsInt(0));
                         _intQueue.Enqueue(data.GetElementAsInt(1));
                     }
@@ -300,6 +328,8 @@ namespace OscJack
                 case DataType.Vector3Int:
                     lock (_intQueue)
                     {
+                        vector3IntData.x = data.GetElementAsInt(0);
+                        vector3IntData.y = data.GetElementAsInt(1);
                         _intQueue.Enqueue(data.GetElementAsInt(0));
                         _intQueue.Enqueue(data.GetElementAsInt(1));
                         _intQueue.Enqueue(data.GetElementAsInt(2));
